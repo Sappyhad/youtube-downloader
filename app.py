@@ -20,7 +20,7 @@ ALLOWED_HOSTS = {"youtube.com", "www.youtube.com", "m.youtube.com", "music.youtu
 FORMATS = {"mp4", "mp3", "wav"}
 MAX_ATTEMPTS = 3
 
-app = Flask(__name__, static_folder=None)
+app = Flask(__name__, static_folder=BASE_DIR / "static")
 jobs: dict[str, dict] = {}
 jobs_lock = threading.Lock()
 

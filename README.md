@@ -102,7 +102,10 @@ A copy of every file is also kept in the `downloads/` folder.
 ```
 youtube-downloader/
 ├── app.py             # Flask backend + yt-dlp
-├── static/index.html  # web UI
+├── static/
+│   ├── index.html     # web UI markup
+│   ├── style.css      # styles
+│   └── app.js         # UI logic (start job, poll progress, fetch file)
 ├── start.bat          # one-click launcher (Windows)
 └── requirements.txt
 ```
