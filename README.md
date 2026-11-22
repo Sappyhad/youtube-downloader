@@ -17,7 +17,7 @@
 
 </div>
 
-Paste a YouTube link → pick a format → click **Pobierz** (Download) → the file lands in your browser's downloads.
+Paste a YouTube link → pick a format → click **Download** → the file lands in your browser's downloads.
 
 ---
 
@@ -81,7 +81,7 @@ winget install Gyan.FFmpeg      # Windows
 .venv\Scripts\python app.py
 ```
 
-Then open <http://127.0.0.1:5000>, paste a link, choose a format and click **Pobierz**.
+Then open <http://127.0.0.1:5000>, paste a link, choose a format and click **Download**.
 A copy of every file is also kept in the `downloads/` folder.
 
 ---
@@ -92,8 +92,8 @@ A copy of every file is also kept in the `downloads/` folder.
 |---|---|
 | `HTTP Error 403: Forbidden` after 3 attempts | YouTube is temporarily throttling your IP. Wait a few minutes and try again. |
 | Downloads stopped working entirely | YouTube changed something — update yt-dlp: `.venv\Scripts\pip install -U "yt-dlp[default]"` |
-| `Brak ffmpeg w systemie` (FFmpeg missing) | Install FFmpeg (see above) and restart the server. |
-| Stuck on "Pobieranie informacji o filmie…" | Check the server window for errors; restart it if needed. |
+| `FFmpeg is not installed` | Install FFmpeg (see above) and restart the server. |
+| Stuck on "Fetching video info…" | Check the server window for errors; restart it if needed. |
 
 ---
 

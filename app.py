@@ -133,11 +133,11 @@ def start_download():
     url = (request.json.get("url") or "").strip()
     fmt = request.json.get("format")
     if not is_youtube_url(url):
-        return jsonify(error="To nie jest link do YouTube."), 400
+        return jsonify(error="This is not a YouTube link."), 400
     if fmt not in FORMATS:
-        return jsonify(error="Nieznany format."), 400
+        return jsonify(error="Unknown format."), 400
     if not FFMPEG_DIR:
-        return jsonify(error="Brak ffmpeg w systemie."), 500
+        return jsonify(error="FFmpeg is not installed."), 500
 
     job_id = uuid.uuid4().hex
     with jobs_lock:

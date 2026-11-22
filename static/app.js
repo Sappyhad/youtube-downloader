@@ -2,7 +2,7 @@ const form = document.getElementById("form");
 const statusEl = document.getElementById("status");
 const bar = document.getElementById("bar");
 const button = document.getElementById("go");
-const LABELS = { queued: "Pobieranie informacji o filmie…", downloading: "Pobieranie", processing: "Łączenie / konwersja…" };
+const LABELS = { queued: "Fetching video info…", downloading: "Downloading", processing: "Merging / converting…" };
 
 function setStatus(text, kind = "") {
   statusEl.textContent = text;
@@ -20,14 +20,14 @@ async function poll(jobId) {
   if (job.status === "done") {
     setProgress(100);
     const details = job.resolution ? ` (${job.resolution})` : "";
-    setStatus(`Gotowe: ${job.title}${details}`, "done");
+    setStatus(`Done: ${job.title}${details}`, "done");
     window.location.href = `/api/file/${jobId}`;
     button.disabled = false;
     return;
   }
   if (job.status === "error") {
     setProgress(null);
-    setStatus(`Błąd: ${job.error}`, "error");
+    setStatus(`Error: ${job.error}`, "error");
     button.disabled = false;
     return;
   }
@@ -56,7 +56,7 @@ form.addEventListener("submit", async (event) => {
     poll(data.job_id);
   } catch (err) {
     setProgress(null);
-    setStatus(`Błąd: ${err.message}`, "error");
+    setStatus(`Error: ${err.message}`, "error");
     button.disabled = false;
   }
 });
