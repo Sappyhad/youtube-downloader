@@ -1,44 +1,59 @@
 <div align="center">
 
-# ▶ YT Downloader
+# ▶️ YT Downloader
 
-Lokalna aplikacja webowa do pobierania filmów z YouTube — wideo w **MP4 do 1080p** lub audio w **MP3 320 kbps** / **WAV**.
+**Local web app for downloading YouTube videos as MP4 (up to 1080p) or audio as MP3 320 kbps / WAV.**
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-3.x-000000?logo=flask&logoColor=white)
-![yt-dlp](https://img.shields.io/badge/yt--dlp-latest-FF0000?logo=youtube&logoColor=white)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-required-007808?logo=ffmpeg&logoColor=white)
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
-![Localhost](https://img.shields.io/badge/runs%20on-localhost-blueviolet)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![yt-dlp](https://img.shields.io/badge/yt--dlp-latest-FF0000?logo=youtube&logoColor=white)](https://github.com/yt-dlp/yt-dlp)
+[![FFmpeg](https://img.shields.io/badge/requires-FFmpeg-007808?logo=ffmpeg&logoColor=white)](https://ffmpeg.org/)
+[![Node.js](https://img.shields.io/badge/requires-Node.js-5FA04E?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#-quick-start)
+[![Localhost](https://img.shields.io/badge/runs%20on-localhost-blueviolet)](#-features)
+[![Last commit](https://img.shields.io/github/last-commit/Sappyhad/youtube-downloader)](https://github.com/Sappyhad/youtube-downloader/commits)
+[![Repo size](https://img.shields.io/github/repo-size/Sappyhad/youtube-downloader)](https://github.com/Sappyhad/youtube-downloader)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
 
+Paste a YouTube link → pick a format → click **Pobierz** (Download) → the file lands in your browser's downloads.
+
 ---
 
-## Funkcje
+## ✨ Features
 
-| Format | Jakość | Szczegóły |
-|--------|--------|-----------|
-| **MP4** | do 1920×1080 | H.264 + AAC — działa w każdym odtwarzaczu |
-| **MP4 (Shorts)** | do 1080×1920 | pionowe wideo w pełnym Full HD |
-| **MP3** | 320 kbps | z najlepszej dostępnej ścieżki audio |
-| **WAV** | PCM 16-bit, 48 kHz | bezstratny zapis najlepszego źródła |
+| Format | Quality | Details |
+|--------|---------|---------|
+| 🎬 **MP4** | up to 1920×1080 | H.264 + AAC — plays in every player |
+| 📱 **MP4 (Shorts)** | up to 1080×1920 | vertical video in full Full HD |
+| 🎵 **MP3** | 320 kbps | converted from the best available audio track |
+| 🎚️ **WAV** | PCM 16-bit, 48 kHz | lossless copy of the best source |
 
-- Zawsze najwyższa dostępna jakość do 1080p (materiały 4K są zmniejszane do Full HD, nigdy poniżej tego, co oferuje źródło).
-- Limit liczony po **krótszym boku** obrazu, więc Shorts trafiają w 1080×1920, a nie w 608×1080.
-- Pasek postępu pobierania i konwersji.
-- Serwer nasłuchuje wyłącznie na `127.0.0.1` — niedostępny z sieci.
+- 🏆 **Always the best quality up to 1080p** — 4K sources are scaled down to Full HD, never below what the source offers.
+- 📐 **Shorts-aware limit** — the cap applies to the **shorter side** of the frame, so Shorts come out as 1080×1920, not 608×1080.
+- 🔁 **Auto-retry** — when YouTube rejects a stream URL (`HTTP 403`), the download restarts with fresh URLs (up to 3 attempts).
+- 📊 **Progress bar** for downloading and converting.
+- 🔒 **Local only** — the server listens on `127.0.0.1` and is not reachable from the network.
 
-> **O jakości audio:** YouTube nie udostępnia MP3 ani WAV. Źródłem jest zawsze Opus (~160 kbps) lub AAC (128 kbps).
-> Aplikacja wybiera najlepszą ścieżkę i konwertuje ją raz. WAV nie poprawi jakości ponad źródło, ale nie dokłada żadnej dodatkowej straty — idealny do dalszej obróbki.
+> [!NOTE]
+> **About audio quality:** YouTube never serves MP3 or WAV. The source is always Opus (~160 kbps) or AAC (128 kbps).
+> The app picks the best track and converts it exactly once. WAV can't add quality beyond the source, but it adds no
+> further loss either — ideal for editing.
 
-## Wymagania
+---
 
-- [Python](https://www.python.org/) 3.10+
-- [FFmpeg](https://ffmpeg.org/) (łączenie strumieni wideo/audio i konwersja)
-- [Node.js](https://nodejs.org/) lub [Deno](https://deno.com/) (yt-dlp używa go do obsługi zabezpieczeń YouTube)
+## 🧰 Requirements
 
-## Instalacja
+- [Python](https://www.python.org/downloads/) 3.10+
+- [FFmpeg](https://ffmpeg.org/) — merges video/audio streams and converts audio
+- [Node.js](https://nodejs.org/) or [Deno](https://deno.com/) — used by yt-dlp to solve YouTube's JS challenges
+
+---
+
+## 🚀 Quick start
+
+### 1. Clone and install
 
 ```bash
 git clone https://github.com/Sappyhad/youtube-downloader.git
@@ -48,42 +63,58 @@ python -m venv .venv
 # .venv/bin/pip install -r requirements.txt        # macOS / Linux
 ```
 
-FFmpeg na Windows:
+### 2. Install FFmpeg
 
 ```powershell
-winget install Gyan.FFmpeg
+winget install Gyan.FFmpeg      # Windows
+# brew install ffmpeg           # macOS
+# sudo apt install ffmpeg       # Debian / Ubuntu
 ```
 
-## Uruchomienie
+### 3. Run
 
-**Windows:** dwuklik na `start.bat` — serwer wystartuje i otworzy przeglądarkę.
+**Windows:** double-click `start.bat` — it starts the server and opens the browser.
 
-**Ręcznie:**
+**Manually:**
 
 ```bash
 .venv\Scripts\python app.py
 ```
 
-Następnie otwórz <http://127.0.0.1:5000>, wklej link, wybierz format i kliknij **Pobierz**.
-Gotowy plik pobiera się przez przeglądarkę; kopia zostaje w katalogu `downloads/`.
+Then open <http://127.0.0.1:5000>, paste a link, choose a format and click **Pobierz**.
+A copy of every file is also kept in the `downloads/` folder.
 
-## Aktualizacja yt-dlp
+---
 
-YouTube regularnie zmienia swoje API. Jeśli pobieranie przestanie działać:
+## 🛠️ Troubleshooting
 
-```bash
-.venv\Scripts\pip install -U "yt-dlp[default]"
+| Problem | What to do |
+|---|---|
+| `HTTP Error 403: Forbidden` after 3 attempts | YouTube is temporarily throttling your IP. Wait a few minutes and try again. |
+| Downloads stopped working entirely | YouTube changed something — update yt-dlp: `.venv\Scripts\pip install -U "yt-dlp[default]"` |
+| `Brak ffmpeg w systemie` (FFmpeg missing) | Install FFmpeg (see above) and restart the server. |
+| Stuck on "Pobieranie informacji o filmie…" | Check the server window for errors; restart it if needed. |
+
+---
+
+## 🗂️ Project structure
+
 ```
-
-## Struktura
-
-```
-├── app.py             # backend Flask + yt-dlp
-├── static/index.html  # interfejs
-├── start.bat          # szybki start (Windows)
+youtube-downloader/
+├── app.py             # Flask backend + yt-dlp
+├── static/index.html  # web UI
+├── start.bat          # one-click launcher (Windows)
 └── requirements.txt
 ```
 
-## Uwaga
+---
 
-Projekt do użytku prywatnego. Pobieraj tylko treści, do których masz prawa, zgodnie z [Warunkami korzystania z YouTube](https://www.youtube.com/t/terms).
+## 📜 License
+
+[MIT](LICENSE) © Sappyhad
+
+---
+
+<div align="center">
+<sub>For personal use only. Download only content you have the rights to, and respect the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>.</sub>
+</div>
